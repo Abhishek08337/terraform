@@ -5,11 +5,11 @@ provider "aws" {
 
 resource "aws_instance" "webserver" {
     ami = var.ami
-    instance_type = var.instance_type
+    instance_type = var.inst_type
     count = var.count
     key_name = var.key
     disable_api_termination = var.termination_protection
-    vpc_security_group_ids = [var.security_group,aws_security_group.webserver_sg.id]
+    vpc_security_group_ids = [var.sg,aws_security_group.webserver_sg.id]
     tags = {
         Name = "variable-demo"
         purpose = "demo"
@@ -25,17 +25,18 @@ resource "aws_instance" "webserver" {
 }
 
 resource "aws_security_group" "webserver_sg" {
-    Name = "demo-sg"
+    name = "demo-sg"
     ingress {
+        description = "HTTP"
         from_port = 80
         to_port = 80
-        protocol = "TCP"
+        protocol = "tcp"
         cidr_blocks = ["0.0.0.0/0"]
     }
     egress {
         from_port = 0
         to_port = 0
-        protocol = -1
+        protocol = "-1"
         cidr_blocks = ["0.0.0.0/0"]
     }
 }
