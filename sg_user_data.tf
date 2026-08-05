@@ -12,9 +12,9 @@ resource "aws_instance" "webserver"{
     key_name = "abhi"
     user_data = <<-EOF
                 #!/bin/bash
-                sudo apt install nginx
-                systemctl start nginx 
-                sudo echo "<h1>Hey this is made by me </h1>" >>> /var/www/html/index.html
+                sudo apt install apache2
+                systemctl start apache2
+                sudo echo "<h1>Hey this is made by me </h1>" >>/var/www/html/index.html
                 EOF
     tags = {
         Name = "Security-group-demo"
