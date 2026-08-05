@@ -8,6 +8,7 @@ resource "aws_instance" "webserver" {
     instance_type = var.instance_type
     count = var.count
     key_name = var.key
+    disable_api_termination = var.termination_protection
     vpc_security_group_ids = [var.security_group,aws_security_group.webserver_sg.id]
     tags = {
         Name = "variable-demo"
