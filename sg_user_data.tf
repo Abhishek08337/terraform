@@ -9,7 +9,6 @@ resource "aws_instance" "webserver"{
     instance_type = "t3.micro"
     count = 1
     vpc_security_group_ids = ["<enter security group id>,aws_security_group.webserver_sg.id"]
-    disable_api_termination = var.termination_protection
     key_name = "abhi"
     user_data = <<-EOF
                 #!/bin/bash
