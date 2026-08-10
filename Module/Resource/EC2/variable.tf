@@ -21,3 +21,7 @@ variable "term_protection" {
 variable "sub_id" {
 
 }
+
+variable "public_ip" {
+    
+}

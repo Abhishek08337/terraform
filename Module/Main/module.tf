@@ -6,7 +6,7 @@ module "ec2"{
     key = "abhi"
     term_protection = false
     sub_id = module.vpc.subnet_id
-
+    public_ip = true
 }
 
 module "vpc" {
