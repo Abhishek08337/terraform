@@ -5,7 +5,7 @@ module "ec2"{
     instance_sg = "sg-024292232aaa78a50"
     key = "abhi"
     term_protection = false
-    sub_id = module.VPC.subnet_id
+    sub_id = module.vpc.subnet_id
 
 }
 
