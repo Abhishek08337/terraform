@@ -17,3 +17,7 @@ variable "key" {
 variable "term_protection" {
     default = false
 }
+
+variable "sub_id" {
+
+}

@@ -5,7 +5,8 @@
 resource "aws_instance" "demo_instance" {
     ami = var.ami_id
     instance_type = var.inst_type
-    vpc_security_group_ids = [var.instance_sg]
+    vpc_security_group_ids = [var.instance_sg,aws_security_group.sg_1.id]
+    subnet_id = var.sub_id
     user_data = <<-EOF
                 #!/bin/bash
                 sudo apt-get update -y
