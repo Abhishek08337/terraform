@@ -1,6 +1,6 @@
 provider "aws" {
     region = "ap-south-1"
-    profile = "default"  # use default from now on beacuse accidentally deleted configs profile
+    profile = "configs"  
 }
 
 #PartitionKey = LockID
@@ -10,7 +10,7 @@ terraform {
         key = "terraform.tfstate"
         dynamodb_table = "demo-b44"
         region = "ap-south-1"
-        profile = "default"   #same here
+        profile = "configs"   
         shared_credentials_files = ["/home/abhi/.aws/credentials"]
     }
 }
