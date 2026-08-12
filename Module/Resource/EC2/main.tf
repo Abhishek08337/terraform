@@ -5,7 +5,7 @@
 resource "aws_instance" "demo_instance" {
     ami = var.ami_id
     instance_type = var.inst_type
-    associate_public_ip_address = var.public_ip
+    vpc_security_group_ids = [var.instance_sg]
     subnet_id = var.sub_id
     user_data = <<-EOF
                 #!/bin/bash
