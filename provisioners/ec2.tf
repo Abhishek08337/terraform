@@ -26,14 +26,14 @@ resource "aws_instance" "demo_ec2" {
         type = "ssh"
         user = "ec2-user"
         private_key = file("${path.module}/tf.pem")
-        host = "self.public_ip"
+        host = self.public_ip
     }
     provisioner "remote-exec" {
         inline = [
-            "sudo yum install httpd -y"
-            "sudo systemctl start httpd"
-            "sudo yum update all -y"
-            "sudo yum upgrade"
+            "sudo yum install httpd -y",
+            "sudo systemctl start httpd",
+            "sudo yum update all -y",
+            "sudo yum upgrade",
             "sudo systemctl enable httpd"
         ]
     }
