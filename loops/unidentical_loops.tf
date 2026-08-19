@@ -8,32 +8,33 @@ resource "aws_instance" "loop_2" {
     # toset will convert list to set which is important because the for each will not work with the list data type
     ami = each.value
     instance_type = var.instance
-    vpc_security_group_ids = [aws_security_group.demo_sg.id]
+    vpc_security_group_ids = [var.sg,aews_security_group.demo_sg.id]
     key_name = var.key
 }
 
 resource "aws_security_group" "demo_sg" {
-    depends_on = [aws_instance.loop_2]
+    depends_on = [aws_instance.loop_2]  # the depends on here will decide what will be build first means here first instance will created thenn other things will get created
+        # basically it decides the order of build/creating of resources
     name = "project-sg"
     ingress {
         description = "ssh"
         from_port = 22
         to_port = 22
-        protocol = tcp
+        protocol = "tcp"
         cidr_blocks = ["0.0.0.0/0"]
     }
     ingress {
         description = "http"
         from_port = 80
         to_port = 80
-        protocol = tcp 
+        protocol = "tcp" 
         cidr_blocks =["0.0.0.0/0"]
     }
     egress {
         description = "all-tcp"
         from_port = 0
         to_port = 0
-        protocol = -1
+        protocol = "-1"
         cidr_blocks = ["0.0.0.0/0"]
     }
 

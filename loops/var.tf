@@ -11,5 +11,5 @@ variable "sg" {
 }
 
 variable "key" {
-    dafault = "free"
+    default = "free"
 }
